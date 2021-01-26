@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 
-const router = createRouter({
+const router: any = createRouter({
   history: createWebHashHistory(),
   routes
 })
