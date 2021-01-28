@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # compile
 /production
+
+# npm or yarn lock
+package-lock.json
+yarn.lock
