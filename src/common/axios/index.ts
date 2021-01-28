@@ -35,6 +35,10 @@ class Axios {
     })
   }
 
+  request(config: any) {
+    return this.instance.request(config)
+  }
+
 }
 
 export default new Axios()
