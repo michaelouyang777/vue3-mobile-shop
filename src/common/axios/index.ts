@@ -2,30 +2,23 @@ import axios from 'axios'
 import httpConfig from './setting'
 
 class Axios {
-  instance: any
+  private instance: any
 
   constructor() {
     this.init()
-  }
-
-  init() {
-    this.getInstance()
     this.setInterceptorsRequest()
     this.setInterceptorsResponse()
   }
 
-  getInstance() {
-    if (!this.instance) {
-      this.instance = axios.create({
-        baseURL: httpConfig.baseURL,
-        timeout: httpConfig.timeout
-      })
-    }
-    return this.instance
+  init() {
+    this.instance = axios.create({
+      baseURL: httpConfig.baseURL,
+      timeout: httpConfig.timeout
+    })
   }
 
   setInterceptorsRequest() {
-    this.instance.interceptors.use((config: any) => {
+    this.instance.interceptors.request.use((config: any) => {
       // dosomething
       return config
     }, (error: Error) => {
@@ -34,7 +27,7 @@ class Axios {
   }
 
   setInterceptorsResponse() {
-    this.instance.interceptors.use((response: any) => {
+    this.instance.interceptors.response.use((response: any) => {
       // dosomething
       return response
     }, (error: Error) => {
@@ -43,3 +36,5 @@ class Axios {
   }
 
 }
+
+export default new Axios()
