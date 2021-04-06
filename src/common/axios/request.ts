@@ -1,14 +1,14 @@
 import axios from './index'
-import { Toast, Dialog, Loading } from 'vant';
+import { Toast, Dialog } from 'vant';
 
-export function $fetchPost(url: String, data: Object) {
+export function $fetchPost(url: String, data: Object = {}) {
   return new Promise((resolve, reject) => {
     axios.request({
       url,
       data,
       method: 'post'
     }).then((res: any) => {
-      if (res.data.code === 200) {
+      if (res.code === 10200) {
         resolve(res.data)
       } else {
         Dialog.alert({
@@ -22,14 +22,14 @@ export function $fetchPost(url: String, data: Object) {
   })
 }
 
-export function $fetchGet(url:String, params: Object) {
+export function $fetchGet(url: String, params: Object) {
   return new Promise((resolve, reject) => {
     axios.request({
       url,
       params,
       method: 'get'
     }).then((res: any) => {
-      if (res.data.code === 200) {
+      if (res.code === 10200) {
         resolve(res.data)
       } else {
         Dialog.alert({
@@ -50,7 +50,7 @@ export function $fetchPut(url: String, data: Object) {
       data,
       method: 'put'
     }).then((res: any) => {
-      if (res.data.code === 200) {
+      if (res.code === 10200) {
         resolve(res.data)
       } else {
         Dialog.alert({
@@ -64,14 +64,14 @@ export function $fetchPut(url: String, data: Object) {
   })
 }
 
-export function $fetchDelete(url:String, params: Object) {
+export function $fetchDelete(url: String, params: Object) {
   return new Promise((resolve, reject) => {
     axios.request({
       url,
       params,
       method: 'delete'
     }).then((res: any) => {
-      if (res.data.code === 200) {
+      if (res.code === 10200) {
         resolve(res.data)
       } else {
         Dialog.alert({
