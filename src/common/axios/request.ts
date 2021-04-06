@@ -1,5 +1,5 @@
 import axios from './index'
-import { Toast, Dialog, Loading } from 'vant';
+import { Toast, Dialog } from 'vant';
 
 export function $fetchPost(url: String, data: Object) {
   return new Promise((resolve, reject) => {
