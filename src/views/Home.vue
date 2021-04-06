@@ -16,11 +16,11 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
-  setup(props, context) {
-    let msg: any = ref("");
+  setup() {
+    const msg: any = ref("");
 
     const handleTestHttp = async () => {
-      let res: any = await getPeople();
+      const res: any = await getPeople();
       msg.value = res.userName;
     };
 
