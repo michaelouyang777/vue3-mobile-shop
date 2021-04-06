@@ -7,8 +7,6 @@ class Axios {
 
   constructor() {
     this.init()
-    this.setInterceptorsRequest()
-    this.setInterceptorsResponse()
   }
 
   init() {
@@ -16,6 +14,8 @@ class Axios {
       baseURL: httpConfig.baseURL,
       timeout: httpConfig.timeout
     })
+    this.setInterceptorsRequest()
+    this.setInterceptorsResponse()
   }
 
   setInterceptorsRequest() {
@@ -29,20 +29,14 @@ class Axios {
 
   setInterceptorsResponse() {
     this.instance.interceptors.response.use((response: AxiosResponse) => {
-      // dosomething
-      console.log(response);
+      // console.log(response);
       const config: AxiosRequestConfig = response.config || '';
 
-      const code = Number(response.data.status);
+      const code = Number(response.status);
       if (code === 200) {
-        if (config) {
-          Notify({
-            type: 'success',
-            message: response.data.msg
-          });
-        }
         return response.data;
-      } else {
+      } 
+      else {
         let errCode = [402, 403];
         if (errCode.includes(response.data.code)) {
           Notify({
