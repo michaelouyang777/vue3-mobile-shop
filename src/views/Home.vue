@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <button @click="handleTestHttp">测试http</button>
+    <button @click="handleTestHttp">获取后端数据</button>
     <hr />
-    <HelloWorld :msg="msg"></HelloWorld>
+    <HelloWorld :user="userInfo"></HelloWorld>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import { defineComponent, ref } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import { getPeople } from "@/apis/user/user";
+import User from "@/entities/user/user";
 
 export default defineComponent({
   name: "Home",
@@ -17,15 +18,17 @@ export default defineComponent({
     HelloWorld,
   },
   setup() {
-    const msg: any = ref("");
+    const userInfo: any = ref({});
 
     const handleTestHttp = async () => {
       const res: any = await getPeople();
-      msg.value = res.userName;
+      console.log(new User(res));
+      const user = new User(res).userInfo;
+      userInfo.value = user;
     };
 
     return {
-      msg,
+      userInfo,
       handleTestHttp,
     };
   },
